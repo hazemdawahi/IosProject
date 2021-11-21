@@ -1,11 +1,14 @@
 # IosProject 
 
+<img width="500" height="350" src="media/logo.svg" alt="Awesome">
 
 
 ## Contents
 
+
 - [Front-End Development](#front-end-development)
 - [Back-End Development](#back-end-development)
+
 
 
 ## Front-End Development
