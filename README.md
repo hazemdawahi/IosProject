@@ -7,3 +7,6 @@ We use technology swift for our app . Swift is a powerful and intuitive programm
 ** Architecture : " MVVM "
 
 We use architecture MVVM for our app . In most of our application, we have a view controller (UI) which needs to fetch data from the server(API) and need to display it in the UI. We will implement the same behavior using the MVVM Pattern.
+
+
+
