@@ -1,0 +1,61 @@
+const express = require('express')
+const mongoose  = require ('mongoose')
+const morgan   = require ('morgan')
+const bodyParser = require ('body-parser')
+const UserRoute = require('./routes/userRoute')
+const testDRoute = require('./routes/TestDRoute')
+const testMRoute = require('./routes/TestMRoute')
+const reclamationRoute = require('./routes/reclamationRoute')
+const paimentRoute = require('./routes/paimentRoute')
+const lvl1Route = require('./routes/lvl1Route')
+const lvl2Route = require('./routes/lvl2Route')
+const lvl3Route =require('./routes/lvl3Route')
+const lvl4Route = require ('./routes/lvl4Route')
+const lvl5Route = require ('./routes/lvl5Route')
+const lvl6Route = require ('./routes/lvl6Route')
+const lvl7Route = require('./routes/lvl7Route')
+const lvl8Route  = require ('./routes/lvl8Route')
+const AuthRoute = require('./routes/authRoute')
+const translate = require ('./routes/translateRoute')
+const { PDFNet }  = require('@pdftron/pdfnet-node')
+const cookieParser = require('cookie-parser')
+const cert = require('./routes/certRoute')
+require("dotenv").config();
+mongoose.connect('mongodb+srv://ilearn:123@ilearn.qsvum.mongodb.net/ilearn?retryWrites=true&w=majority')
+const db = mongoose.connection
+
+db.on('error', (err) => {
+  console.log(err)
+
+})
+db.once('open',() => {
+  console.log('database connection established!')
+
+  
+})
+const app = express()
+app.use(morgan('dev'))
+app.use(cookieParser())
+app.use (bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+const PORT = process.env.PORT || 3000
+app.listen(PORT, ()=> {
+  console.log('Server is running on port ${PORT}')
+})
+
+app.use('/api/user', UserRoute)
+app.use('/api/testD', testDRoute)
+app.use('/api/testM', testMRoute)
+app.use('/api/reclamation', reclamationRoute)
+app.use('/api/paiment', paimentRoute)
+app.use('/api/lvl1' , lvl1Route)
+app.use('/api/lvl2' , lvl2Route)
+app.use ('/api/lvl3', lvl3Route)
+app.use('/api/lvl4', lvl4Route)
+app.use ('/api/lvl5', lvl5Route)
+app.use ('/api/lvl6', lvl6Route)
+app.use('/api/lvl7', lvl7Route)
+app.use('/api/lvl8',lvl8Route)
+app.use('/api' , AuthRoute)
+app.use('/api', translate)
+app.use('/api',cert)
